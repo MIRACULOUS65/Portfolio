@@ -1,0 +1,9 @@
+.next
+node_modules
+public
+package-lock.json
+LICENSE
+
+# Tool-managed / authoritative source documents - kept verbatim.
+.kiro
+Docs
