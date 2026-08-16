@@ -165,13 +165,10 @@ export function HeroSection() {
             data-slot="hero-column"
             className="mx-auto flex w-full pt-16 max-w-2xl flex-col items-start gap-5 text-left"
           >
-            {/* Decorative galaxy banner, LinkedIn-cover-photo style: a real
-                block in normal flow, sitting above the avatar/name row (not
-                behind/overlapping it), confined to the column's own width
-                rather than full-bleed — item 8 of the design pass. */}
+            {/* Decorative galaxy banner - hidden on mobile for better performance */}
             <div
               aria-hidden="true"
-              className="pointer-events-none h-40 w-full overflow-hidden rounded-xl border border-border sm:h-47"
+              className="pointer-events-none hidden sm:block h-40 w-full overflow-hidden rounded-xl border border-border sm:h-47"
             >
               <Galaxy
                 density={1.2}
