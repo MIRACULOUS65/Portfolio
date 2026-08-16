@@ -43,10 +43,10 @@ export default function HackathonsPage() {
         <div className="relative z-10 flex h-full flex-col items-center justify-between py-12 text-center">
           <div className="px-6">
             <h1 className="text-balance text-4xl font-medium tracking-tight text-foreground sm:text-5xl md:text-6xl">
-              Hacktropica 2026 MLH
+              Hackathon
             </h1>
             <p className="mt-2 text-xl text-muted-foreground sm:text-2xl">
-              Infinitycare
+              Memories
             </p>
           </div>
           <div className="max-w-md px-6">

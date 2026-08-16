@@ -277,7 +277,16 @@ export default function Galaxy({
     let program: Program;
 
     function resize() {
-      renderer.setSize(container.offsetWidth, container.offsetHeight);
+      const width = container.offsetWidth;
+      const height = container.offsetHeight;
+      
+      // Safety check: Don't resize if dimensions are invalid
+      if (width === 0 || height === 0) {
+        console.warn("Galaxy: Invalid container dimensions, skipping resize");
+        return;
+      }
+      
+      renderer.setSize(width, height);
       if (program) {
         program.uniforms.uResolution.value = new Color(
           gl.canvas.width,
@@ -286,8 +295,18 @@ export default function Galaxy({
         );
       }
     }
-    window.addEventListener("resize", resize, false);
-    resize();
+    
+    // Wait for container to have valid dimensions before initial resize
+    const checkDimensions = () => {
+      if (container.offsetWidth > 0 && container.offsetHeight > 0) {
+        window.addEventListener("resize", resize, false);
+        resize();
+      } else {
+        // Retry after a frame if dimensions not ready
+        requestAnimationFrame(checkDimensions);
+      }
+    };
+    checkDimensions();
 
     const geometry = new Triangle(gl);
     program = new Program(gl, {
@@ -345,6 +364,12 @@ export default function Galaxy({
       renderer.render({ scene: mesh });
     }
     animateId = requestAnimationFrame(update);
+    
+    // Ensure canvas fills container and has proper styling
+    gl.canvas.style.width = "100%";
+    gl.canvas.style.height = "100%";
+    gl.canvas.style.display = "block";
+    
     container.appendChild(gl.canvas);
 
     function handleMouseMove(e: MouseEvent) {
