@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 
 import { Footer } from "@/components/footer/Footer";
 import { Navbar } from "@/components/navbar/Navbar";
+import { SmoothScrollProvider } from "@/components/shared/SmoothScrollProvider";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { getSiteConfig } from "@/lib/data-access";
@@ -94,9 +95,11 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col font-sans">
         <DotPattern className="fixed inset-0 -z-10 h-screen w-screen opacity-30" />
         <ThemeProvider>
-          <Navbar />
-          <main className="flex flex-1 flex-col">{children}</main>
-          <Footer />
+          <SmoothScrollProvider>
+            <Navbar />
+            <main className="flex flex-1 flex-col">{children}</main>
+            <Footer />
+          </SmoothScrollProvider>
         </ThemeProvider>
       </body>
     </html>

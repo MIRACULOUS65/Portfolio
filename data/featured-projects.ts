@@ -39,7 +39,7 @@
 import type { FeaturedProjectsConfig } from "@/types";
 
 export const featuredProjects: FeaturedProjectsConfig = [
-  { projectId: "aerosense", order: 1 },
-  { projectId: "novaaid", order: 2 },
-  { projectId: "digital-health-records", order: 3 },
+  { projectId: "sentinel-sdk", order: 1 },
+  { projectId: "swyftpay", order: 2 },
+  { projectId: "infinitycare", order: 3 },
 ];

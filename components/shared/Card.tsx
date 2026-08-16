@@ -77,17 +77,18 @@ const cardVariants = cva(
         /**
          * A dark, editorial surface for cards that want the site's other
          * glow treatment instead of the token-driven `bg-card`. Hover is
-         * transform-only (`scale`), following the same Requirement 24.4
-         * constraint as `interactive` above: no `box-shadow` transition, an
-         * enumerated transition property list instead of `transition-all`,
-         * and a `motion-reduce` variant that cancels the scale.
+         * transform-only (`scale` and `translateY` for float up), following 
+         * the same Requirement 24.4 constraint as `interactive` above: no 
+         * `box-shadow` transition, an enumerated transition property list 
+         * instead of `transition-all`, and a `motion-reduce` variant that 
+         * cancels the transform.
          */
         glow: [
           "bg-linear-to-br from-[#010101] via-[#090909] to-[#010101]",
           "rounded-2xl border border-white/10",
-          "transition-[transform,scale,rotate,border-color] duration-500 ease-out will-change-transform",
-          "hover:scale-105 hover:-rotate-1 hover:border-white/25",
-          "motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:hover:rotate-0",
+          "transition-[transform,scale,translate,border-color] duration-500 ease-out will-change-transform",
+          "hover:scale-105 hover:-translate-y-2 hover:border-white/25",
+          "motion-reduce:transition-none motion-reduce:hover:scale-100 motion-reduce:hover:translate-y-0",
         ],
       },
     },

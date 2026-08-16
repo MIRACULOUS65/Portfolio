@@ -88,7 +88,7 @@ export const navigation: NavigationItem[] = [
     href: "/recommendation",
     sectionId: "recommendation",
     order: 6,
-    visible: true,
+    visible: false, // Hidden for now
   },
   {
     id: "nav-connect",

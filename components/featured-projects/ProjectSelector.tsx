@@ -1,7 +1,66 @@
 import { GitBranch, SquareArrowOutUpRight } from "lucide-react";
+import * as React from "react";
 
 import { cn } from "@/utils/cn";
 import type { Project } from "@/types";
+
+// Grid pattern helper functions
+function GridPattern({
+  width,
+  height,
+  x,
+  y,
+  squares,
+  ...props
+}: React.ComponentProps<"svg"> & {
+  width: number;
+  height: number;
+  x: string;
+  y: string;
+  squares?: number[][];
+}) {
+  const patternId = React.useId();
+
+  return (
+    <svg aria-hidden="true" {...props}>
+      <defs>
+        <pattern
+          id={patternId}
+          width={width}
+          height={height}
+          patternUnits="userSpaceOnUse"
+          x={x}
+          y={y}
+        >
+          <path d={`M.5 ${height}V.5H${width}`} fill="none" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" strokeWidth={0} fill={`url(#${patternId})`} />
+      {squares && (
+        <svg x={x} y={y} className="overflow-visible">
+          {squares.map(([x, y], index) => (
+            <rect
+              strokeWidth="0"
+              key={index}
+              width={width + 1}
+              height={height + 1}
+              x={x * width}
+              y={y * height}
+            />
+          ))}
+        </svg>
+      )}
+    </svg>
+  );
+}
+
+function genRandomPattern(length?: number): number[][] {
+  length = length ?? 5;
+  return Array.from({ length }, () => [
+    Math.floor(Math.random() * 4) + 7,
+    Math.floor(Math.random() * 6) + 1,
+  ]);
+}
 
 /**
  * The Featured Projects card list (Requirements 9.1, 9.4, 23.5,
@@ -44,6 +103,18 @@ export function ProjectSelector({
   onSelect,
   className,
 }: ProjectSelectorProps) {
+  // Generate stable patterns using project ID instead of random
+  const getStablePattern = (projectId: string): number[][] => {
+    // Use project ID as seed for consistent pattern
+    const seed = projectId.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+    const length = 5;
+    return Array.from({ length }, (_, i) => {
+      const x = ((seed + i * 7) % 4) + 7;
+      const y = ((seed + i * 3) % 6) + 1;
+      return [x, y];
+    });
+  };
+
   return (
     <div
       data-slot="project-selector"
@@ -56,6 +127,7 @@ export function ProjectSelector({
     >
       {projects.map((project, index) => {
         const isSelected = index === selectedIndex;
+        const p = getStablePattern(project.id);
 
         return (
           <div
@@ -64,14 +136,28 @@ export function ProjectSelector({
             data-slot="project-selector-item"
             data-selected={isSelected ? "true" : "false"}
             className={cn(
-              "flex w-80 shrink-0 flex-col gap-3 rounded-2xl border p-6 transition-[transform,scale,rotate,border-color] duration-500 ease-out lg:w-full",
+              "relative flex w-80 shrink-0 flex-col gap-3 overflow-hidden rounded-2xl border p-6 transition-[transform,scale,border-color] duration-500 ease-out lg:w-full",
               "bg-linear-to-br from-[#010101] via-[#090909] to-[#010101]",
               isSelected
-                ? "scale-105 -rotate-1 border-white/25"
-                : "border-white/10 hover:scale-105 hover:-rotate-1 hover:border-white/25",
+                ? "scale-105 -translate-y-2 border-white/25"
+                : "border-white/10 hover:scale-105 hover:-translate-y-2 hover:border-white/25",
             )}
           >
-            <div className="flex items-start justify-between gap-3">
+            {/* Grid pattern overlay */}
+            <div className="pointer-events-none absolute top-0 left-1/2 -mt-2 -ml-20 h-full w-full mask-[linear-gradient(white,transparent)]">
+              <div className="from-foreground/5 to-foreground/1 absolute inset-0 bg-linear-to-r mask-[radial-gradient(farthest-side_at_top,white,transparent)] opacity-100">
+                <GridPattern
+                  width={20}
+                  height={20}
+                  x="-12"
+                  y="4"
+                  squares={p}
+                  className="fill-foreground/5 stroke-foreground/25 absolute inset-0 h-full w-full mix-blend-overlay"
+                />
+              </div>
+            </div>
+
+            <div className="relative z-10 flex items-start justify-between gap-3">
               <button
                 type="button"
                 data-slot="project-selector-button"

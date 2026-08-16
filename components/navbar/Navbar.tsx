@@ -9,7 +9,6 @@ import {
   navLinkStateProps,
   useActiveNavigationItemId,
 } from "@/components/navbar/ActiveSectionIndicator";
-import { ThemeToggle } from "@/components/navbar/ThemeToggle";
 import { Button } from "@/components/shared/Button";
 import { Container } from "@/components/shared/Container";
 import {
@@ -388,10 +387,19 @@ export const NAVBAR_SCROLLED_CLASS =
   "border-border bg-background/80 shadow-elevation backdrop-blur-md";
 
 /** The surface classes for one of the two states. */
-export function navbarSurfaceClasses(isScrolled: boolean): string {
+export function navbarSurfaceClasses(isScrolled: boolean, pathname: string | null): string {
+  // Check if we're on a page that should always show navbar background
+  const isAlwaysScrolled = 
+    pathname === '/projects' || 
+    pathname === '/blog' ||
+    pathname === '/hackathons' ||
+    pathname === '/recommendation';
+  
+  const forceScrolled = isScrolled || isAlwaysScrolled;
+  
   return cn(
     NAVBAR_BASE_CLASS,
-    isScrolled ? NAVBAR_SCROLLED_CLASS : NAVBAR_AT_TOP_CLASS,
+    forceScrolled ? NAVBAR_SCROLLED_CLASS : NAVBAR_AT_TOP_CLASS,
   );
 }
 
@@ -866,12 +874,13 @@ export function Navbar({ className }: NavbarProps) {
   // Exactly one call, page-wide (Requirement 5.5) — see the module doc.
   const activeItemId = useActiveNavigationItemId(items);
   const isScrolled = useIsScrolledPastTop();
+  const pathname = usePathname();
 
   return (
     <header
       data-slot="navbar"
       data-scrolled={isScrolled ? "true" : undefined}
-      className={cn(navbarSurfaceClasses(isScrolled), className)}
+      className={cn(navbarSurfaceClasses(isScrolled, pathname), className)}
     >
       <Container className="max-w-4xl">
         <nav
@@ -897,7 +906,6 @@ export function Navbar({ className }: NavbarProps) {
           </ul>
 
           <div data-slot="navbar-controls" className={cn(NAVBAR_CONTROLS)}>
-            <ThemeToggle />
             {/* Requirement 5.6: the links below `md`, where the list above is
                 `display: none`. Same `items` and same `activeItemId` — one
                 observer, one highlight decision. */}

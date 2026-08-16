@@ -214,4 +214,9 @@
       animation-play-state: paused !important;
     }
   }
+
+  /* Hide footer on specific pages */
+  main:has(.hide-footer-page) ~ footer {
+    display: none;
+  }
 }

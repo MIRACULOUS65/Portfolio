@@ -1,0 +1,35 @@
+# Development files
+.vscode/
+.kiro/
+
+# Documentation
+README.md
+
+# Build artifacts
+.next/
+node_modules/
+
+# Testing
+coverage/
+
+# Environment
+.env.local
+
+# Git
+.git/
+.gitignore
+
+# IDE
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db

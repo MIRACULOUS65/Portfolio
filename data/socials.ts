@@ -54,7 +54,7 @@ export const socials: Social[] = [
     id: "social-portfolio",
     platform: "Portfolio",
     username: "sushovan1908",
-    url: "#",
+    url: "https://sushovan-ghosh.is-a.dev/",
     icon: "Globe",
     visible: true,
   },

@@ -50,39 +50,39 @@ import type { Hackathon } from "@/types";
 export const hackathons: Hackathon[] = [
   /* ---------------------- Placed / award-winning entries ---------------------- */
   {
-    id: "nova-global-hack-2024",
-    slug: "nova-global-hack-2024",
-    name: "Nova Global Hack 2024",
-    organizer: "Nova Foundation",
+    id: "stellar-build-a-thon-2026",
+    slug: "stellar-build-a-thon-2026",
+    name: "Stellar Build-a-thon",
+    organizer: "Sentinel",
     description:
-      "Secured the Third Runner-Up position by building a real-time incident " +
-      "dashboard that ingests webhook events and streams status changes to " +
-      "on-call responders, shipped end to end over a single weekend.",
-    date: "2024-03-16",
-    location: "Kolkata, India",
-    achievement: "Third Runner-Up",
-    teamMembers: ["Sushovan Ghosh"],
-    technologies: ["nextjs", "typescript", "firebase", "tailwindcss"],
+      "Implemented a comprehensive SDK for blockchain development, featuring " +
+      "robust APIs, developer-friendly documentation, and seamless integration " +
+      "with existing infrastructure for rapid deployment.",
+    date: "2026-01-26",
+    location: "Delhi, India",
+    achievement: "SDK Implemented",
+    teamMembers: ["Sushovan Ghosh", "Rohan Verma"],
+    technologies: ["typescript", "nodejs", "ethereum", "docker", "aws"],
     images: ["/images/hackathons/pic1.webp", "/images/hackathons/pic2.webp"],
-    demo: "#",
-    github: "#",
+    demo: "https://stellar-sdk.example.dev",
+    github: "https://github.com/example/stellar-sdk",
   },
   {
-    id: "orbit-ai-jam-2024",
-    slug: "orbit-ai-jam-2024",
-    name: "Orbit AI Jam 2024",
-    organizer: "Orbit Labs",
+    id: "hacktropica-2026",
+    slug: "hacktropica-2026",
+    name: "Hacktropica 2026",
+    organizer: "MLH",
     description:
-      "A retrieval-augmented assistant that answers questions over a team's " +
-      "internal runbooks, with citations back to the source paragraph so " +
-      "answers stay auditable.",
-    date: "2024-07-20",
-    location: "Online",
-    achievement: "Best Use of AI",
-    teamMembers: ["Sushovan Ghosh", "Mei Tanaka", "Daniel Okoro", "Sofia Bianchi"],
-    technologies: ["python", "fastapi", "langchain", "openai", "postgresql"],
+      "An innovative healthcare platform powered by AI and machine learning, " +
+      "providing personalized patient care recommendations and health monitoring " +
+      "solutions with real-time analytics.",
+    date: "2024-04-04",
+    location: "Bangalore, India",
+    achievement: "Best HealthTech Idea",
+    teamMembers: ["Sushovan Ghosh", "Ananya Roy", "Karthik Menon"],
+    technologies: ["react", "nodejs", "tensorflow", "mongodb", "tailwindcss"],
     images: ["/images/hackathons/pic3.webp"],
-    github: "https://github.com/example/orbit-runbook-assistant",
+    github: "https://github.com/example/hacktropica-healthtech",
   },
   {
     id: "civic-code-sprint-2023",
@@ -141,21 +141,21 @@ export const hackathons: Hackathon[] = [
     demo: "https://preview-envs.example.dev",
   },
   {
-    id: "openbench-ml-marathon-2025",
-    slug: "openbench-ml-marathon-2025",
-    name: "OpenBench ML Marathon 2025",
-    organizer: "OpenBench Alliance",
+    id: "hacktonix-2026",
+    slug: "hacktonix-2026",
+    name: "Hacktonix 2026",
+    organizer: "Swyftpay",
     description:
-      "A reproducible benchmarking harness for small vision models that pins " +
-      "seeds, records hardware, and publishes a comparable score card for every " +
-      "submitted run.",
-    date: "2025-02-08",
-    location: "Zurich, Switzerland",
-    achievement: "Best Technical Implementation",
-    teamMembers: ["Sushovan Ghosh", "Ibrahim Haddad", "Chen Wei"],
-    technologies: ["pytorch", "pandas", "numpy", "huggingface"],
+      "A decentralized payment platform leveraging blockchain technology for " +
+      "secure and transparent transactions, featuring smart contract integration " +
+      "and real-time settlement capabilities.",
+    date: "2026-04-27",
+    location: "Mumbai, India",
+    achievement: "Best BlockChain Idea Implementation",
+    teamMembers: ["Sushovan Ghosh", "Arjun Patel", "Priya Sharma"],
+    technologies: ["solidity", "ethereum", "nextjs", "typescript", "web3js"],
     images: ["/images/hackathons/pic3.webp", "/images/hackathons/pic4.webp"],
-    github: "https://github.com/example/openbench-harness",
+    github: "https://github.com/example/hacktonix-blockchain",
   },
 
   /* ------------------- Participated without placing (no award) ------------------- */
