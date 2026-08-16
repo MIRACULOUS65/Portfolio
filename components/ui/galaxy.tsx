@@ -240,11 +240,27 @@ export default function Galaxy({
     // nothing" instead of crashing the Hero around it.
     let renderer: Renderer;
     try {
-      renderer = new Renderer({ alpha: transparent, premultipliedAlpha: false });
+      renderer = new Renderer({ 
+        alpha: transparent, 
+        premultipliedAlpha: false,
+        // Add mobile-friendly WebGL context attributes
+        antialias: false, // Disable antialiasing for better mobile performance
+        powerPreference: "low-power", // Prefer battery life on mobile
+      });
     } catch {
+      // Gracefully fail if WebGL is not available
+      console.warn("Galaxy: WebGL not available, falling back to gradient");
+      // Create a CSS gradient fallback
+      container.style.background = "linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%)";
       return;
     }
     const gl = renderer.gl;
+
+    // Additional mobile safety check
+    if (!gl) {
+      container.style.background = "linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%)";
+      return;
+    }
 
     if (transparent) {
       gl.enable(gl.BLEND);
